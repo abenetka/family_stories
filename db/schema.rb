@@ -16,14 +16,12 @@ ActiveRecord::Schema.define(version: 2019_04_03_222711) do
   enable_extension "plpgsql"
 
   create_table "families", force: :cascade do |t|
-    t.bigint "user_id"
     t.bigint "photo_id"
     t.bigint "recipe_id"
     t.bigint "story_id"
     t.index ["photo_id"], name: "index_families_on_photo_id"
     t.index ["recipe_id"], name: "index_families_on_recipe_id"
     t.index ["story_id"], name: "index_families_on_story_id"
-    t.index ["user_id"], name: "index_families_on_user_id"
   end
 
   create_table "photos", force: :cascade do |t|
@@ -58,7 +56,6 @@ ActiveRecord::Schema.define(version: 2019_04_03_222711) do
   add_foreign_key "families", "photos"
   add_foreign_key "families", "recipes"
   add_foreign_key "families", "stories"
-  add_foreign_key "families", "users"
   add_foreign_key "user_families", "families"
   add_foreign_key "user_families", "users"
 end
