@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_03_214542) do
+ActiveRecord::Schema.define(version: 2019_04_03_222711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(version: 2019_04_03_214542) do
     t.string "author"
   end
 
+  create_table "user_families", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "family_id"
+    t.index ["family_id"], name: "index_user_families_on_family_id"
+    t.index ["user_id"], name: "index_user_families_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -52,4 +59,6 @@ ActiveRecord::Schema.define(version: 2019_04_03_214542) do
   add_foreign_key "families", "recipes"
   add_foreign_key "families", "stories"
   add_foreign_key "families", "users"
+  add_foreign_key "user_families", "families"
+  add_foreign_key "user_families", "users"
 end
