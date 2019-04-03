@@ -1,9 +1,7 @@
 class CreateFamilies < ActiveRecord::Migration[5.2]
   def change
     create_table :families do |t|
-      t.references :photo, foreign_key: true
-      t.references :recipe, foreign_key: true
-      t.references :story, foreign_key: true
+      t.string :name
     end
   end
 end
