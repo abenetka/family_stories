@@ -5,6 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
+coverage
 /.bundle
 
 # Ignore all logfiles and tempfiles.
@@ -21,6 +22,9 @@
 /yarn-error.log
 
 /public/assets
+
+.gitignore
+
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
