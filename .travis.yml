@@ -2,16 +2,17 @@ addons:
   postgresql: 9.4
 language: ruby
 rbenv:
-  - 2.4.5
+- 2.4.5
 services:
-  - postgresql
-  - redis-server
+- postgresql
+- redis-server
 before_install:
-  - gem install bundler
+- gem install bundler
 before_script:
-  - bundle exec rake db:{drop,create,migrate,seed}
+- bundle exec rake db:{drop,create,migrate,seed}
 script:
-  - bundle exec rspec
-env:
-  global:
-    secure: PZRjJBt+UXIQu5TF9RoH7OuO7LhLK5tOB6vlh/b60lg/LMLsskQ/5V0tztEHZTVyvFFY/MWSBgYqy2lS4XENvQmKX0Pqg1qOKqGFSb0059lEB7f9EKJGBZ0hD+5Ck6w6+MQ8yfCAfpLh8DxQ2ZhCIORQ5uVPB/0SnIAvQ85PQ8JVV7mk4P0+xc+WWti3uWhrjkzhwC1P4rMEX8+3zw48UxKyecTAlD6kUBk0FqpyhuSFPTvvXhQQG1o/LLvYa8cRrSH9Z2Niy7Ad4xN+ZRouUbCfG2F2vmz4vBj3Np0A85BwxqQ7OQuYNKznJvKOy7j9kRHbWr8gJLX93ycdaeKjra2MmKqXzh0B1zu3c2g4ewNruJBkOqS9qpi7E+Xp844CmKkNiL1I1DcWXGqhFARdRl1xwzJFxxkeY1PM9MymAqvZoCFrrzAQDLGpWt5o45GEnilGxzZw/ndvM2sgxVIXn+JBq86A7MKJ/RY/+Qq9SUd43W7z7JLjRYT4Y9X8nllGAM7/Ak99kTzWIyDsHHQnFAT2GAD/9HtJyidZOLveDw7Bg8bU7HA/G040BMum9YyW7xwdy/KuxY6JfThkBi3wjZp51L8XG7msCVqBfaIyxVVG+JT1YkjNCMxaiGD7fMdU9a0dmfTKKLj+TH3xIv/YR617UV/0qNPv4kE20GGGvrQ=
+- bundle exec rspec
+deploy:
+  provider: heroku
+  api_key:
+    secure: BRqF4PXTkPDf9ftpVWpAssqNjv6UZTJccDhqsK2w3qPwRQNr/CKWYaK2/QycEO2kHxI/Lof6JFKzvA4Iz6iC68UEI+csKs4J7CrDz+5oduIfBBLAEvdahmcKRulGovPF855MirW7X1XUymMtVW9Vkd6ZCcXNWrHnm7mUwXPWNKYHGJT9W8WqII9N7R9yL4ImIrvHCsDClrbStrbCR9AkQGvHDzSUM90aoDSIksPr80EC2VCY2Gh2MWql8Kqi817pPwQ9b2DumJY8Srf2vtz6IsbAobhSu37eZKV8ZfnHomMDtPl8Mw3NoOfLiSY4wO+loqA9FjKepknMEaFvPJYEl8QXvrEBf1MXeGYwXwQYH5KKU0r4PE2vGarAdZWuECiBw8jf4LXA1UuiilyauIzNCTe1NC0PfVoNJOuJ6gwBpMbatkNsvdgD3El5AFMQI3+oOlNcmu3SCUT2ZKd5plrdBIKLoDCblvbYnl1OZAAPazrxmZReD1DSlfleEWFVfZBF7zYecoAG8OspF8KtTkEga7SNxoyBmO2WUYSecjMffdFE1PzwWMyMKu5YulwB6/Nz49+O/caLyTHLRkLmpeU5e9C/fu4qPLieGcYW0XyW3wSn99ZQ5wMjAkG9RlnHEvUbhCcXn9nKhlAIjEaVLgaQU5O4DSfXJVNLIPS1UEVofzc=
