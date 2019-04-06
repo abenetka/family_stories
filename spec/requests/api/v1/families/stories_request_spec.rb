@@ -28,5 +28,15 @@ describe "Family Story API" do
     expect(response).to be_successful
     expect(response.body).to eq("No stories for this family")
   end
+  it "can create a new story" do
+    family_1 = create(:family)
+    story_params = { title: "Face Smash 1972", content: "Herman broke his face on a fence post", author: "Kathy", family_id: family_1.id }
 
+    post "/api/v1/families/#{family_1.id}/stories", params: {story: story_params}
+
+    story = Story.last
+
+    expect(response).to be_successful
+    expect(story.title).to eq(story_params[:title])
+  end
 end
