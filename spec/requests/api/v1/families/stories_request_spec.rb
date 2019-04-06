@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe "Family Story API" do
   it 'returns stories for a particular family' do
-    family_1 = create(:family, id: 1)
-    family_2 = create(:family, id: 2)
+    family_1 = create(:family)
+    family_2 = create(:family)
     story_1 = create(:story, family: family_1)
     story_2 = create(:story, family: family_1)
     story_3 = create(:story, family: family_1)
@@ -22,7 +22,7 @@ describe "Family Story API" do
   end
 
   it 'returns no stories for family if none present' do
-    family_1 = create(:family, id: 1)
+    family_1 = create(:family)
     get "/api/v1/families/#{family_1.id}/stories"
 
     expect(response).to be_successful
