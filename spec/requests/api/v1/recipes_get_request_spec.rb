@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Recipes API' do
   it "returns all recipes for one family" do
     id = create(:family).id
-    family = create(:family, id: 2)
+    family = create(:family, id: 28007148)
     create_list(:recipe, 3, family_id: id)
     create_list(:recipe, 2, family_id: family.id)
 
