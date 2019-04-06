@@ -39,5 +39,11 @@ class CreateFamilyStories < ActiveRecord::Migration[5.2]
 
       t.references :family, foreign_key: true
     end
+
+    create_table :family_members do |t|
+      t.string :name
+
+      t.references :family, foreign_key: true
+    end
   end
 end
