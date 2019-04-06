@@ -7,7 +7,6 @@ Recipe.destroy_all
 
 family_1 = Family.create!(name: "Family 1")
 family_2 = Family.create!(name: "Family 2")
-family_3 = Family.create!(name: "Family 3")
 
 user_1 = User.create!(name: "User 1", email: "user1@email.com")
 user_2 = User.create!(name: "User 2", email: "user2@email.com")
