@@ -39,4 +39,14 @@ describe "Family Story API" do
     expect(response).to be_successful
     expect(story.title).to eq(story_params[:title])
   end
+  it "cannot add a story with incomplete information" do
+    family_1 = create(:family)
+    story_params = { title: "Face Smash 1972" }
+
+    post "/api/v1/families/#{family_1.id}/stories", params: {story: story_params}
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(401)
+    expect(response.body).to eq("You're missing some information, friend!")
+  end
 end
