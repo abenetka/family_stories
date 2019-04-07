@@ -4,4 +4,5 @@ class Family < ApplicationRecord
   has_many :stories
   has_many :recipes
   has_many :photos
+  has_many :family_members
 end
