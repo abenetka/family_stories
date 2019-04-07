@@ -58,4 +58,5 @@ describe 'Recipes API' do
     expect(response.status).to eq(401)
     expect(response.body).to eq("Oops, you forgot some information!")
   end
+
 end
