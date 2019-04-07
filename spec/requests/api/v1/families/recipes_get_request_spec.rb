@@ -25,7 +25,38 @@ describe 'Recipes API' do
     get "/api/v1/families/#{id}/recipes"
 
     expect(response).to be_successful
-
     expect(response.body).to eq("You have no family recipes")
   end
+
+  it "can create a new recipe" do
+    family_1 = create(:family)
+    recipe_params = { title: "Chocolate Chip Cookies",
+                      ingredients: "Flour, Sugar, Eggs, Butter, Chocolate Chips",
+                      instructions: "Mix together and bake",
+                      family_id: family_1.id
+                    }
+    post "/api/v1/families/#{family_1.id}/recipes", params: {recipe: recipe_params }
+
+    recipe = Recipe.last
+
+    expect(response).to be_successful
+    expect(recipe.title).to eq(recipe_params[:title])
+  end
+
+  it "wont create a recipe without all required params" do
+    family_1 = create(:family)
+    recipe_params = {
+                      ingredients: "Flour, Sugar, Eggs, Butter, Chocolate Chips",
+                      instructions: "Mix together and bake",
+                      family_id: family_1.id
+                    }
+    post "/api/v1/families/#{family_1.id}/recipes", params: {recipe: recipe_params }
+
+    recipe = Recipe.last
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(401)
+    expect(response.body).to eq("Oops, you forgot some information!")
+  end
+
 end

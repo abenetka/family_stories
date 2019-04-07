@@ -19,6 +19,12 @@ ActiveRecord::Schema.define(version: 2019_04_04_180525) do
     t.string "name"
   end
 
+  create_table "family_members", force: :cascade do |t|
+    t.string "name"
+    t.bigint "family_id"
+    t.index ["family_id"], name: "index_family_members_on_family_id"
+  end
+
   create_table "family_stories", force: :cascade do |t|
   end
 
@@ -57,6 +63,7 @@ ActiveRecord::Schema.define(version: 2019_04_04_180525) do
     t.string "email"
   end
 
+  add_foreign_key "family_members", "families"
   add_foreign_key "photos", "families"
   add_foreign_key "recipes", "families"
   add_foreign_key "stories", "families"

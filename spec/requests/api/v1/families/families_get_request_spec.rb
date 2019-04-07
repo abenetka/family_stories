@@ -16,7 +16,7 @@ describe 'Families API' do
 
       get "/api/v1/families/#{id}"
       family = JSON.parse(response.body)
-      
+
       expect(response).to be_successful
       expect(family["id"]).to eq(id)
   end
