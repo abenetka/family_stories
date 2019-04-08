@@ -10,7 +10,7 @@ Rails.application.routes.draw do
         get "/:id/family_members", to: 'family_members#index'
       end
 
-      resources :families, only: [:index, :show]
+      resources :families, only: [:index, :show, :create]
     end
   end
 end
