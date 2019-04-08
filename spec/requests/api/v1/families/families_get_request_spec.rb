@@ -20,4 +20,16 @@ describe 'Families API' do
       expect(response).to be_successful
       expect(family["id"]).to eq(id)
   end
+
+  it "can create a family" do
+    family_params = { name: "Fay" }
+
+    post "/api/v1/families", params: {family: family_params }
+
+    family = Family.last
+
+    expect(response).to be_successful
+    expect(family.name).to eq(family_params[:name])
+  end
+
 end
