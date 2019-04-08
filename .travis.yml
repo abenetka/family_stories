@@ -1,19 +1,30 @@
-addons:
-  postgresql: 9.4
+# addons:
+#   postgresql: 9.4
+# language: ruby
+# rbenv:
+# - 2.4.5
+# services:
+# - postgresql
+# - redis-server
+# before_install:
+# - gem install bundler
+# before_script:
+# - bundle exec rake db:{drop,create,migrate}
+# script:
+# - bundle exec rspec
+# - bundle exec rake db:seed
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: BRqF4PXTkPDf9ftpVWpAssqNjv6UZTJccDhqsK2w3qPwRQNr/CKWYaK2/QycEO2kHxI/Lof6JFKzvA4Iz6iC68UEI+csKs4J7CrDz+5oduIfBBLAEvdahmcKRulGovPF855MirW7X1XUymMtVW9Vkd6ZCcXNWrHnm7mUwXPWNKYHGJT9W8WqII9N7R9yL4ImIrvHCsDClrbStrbCR9AkQGvHDzSUM90aoDSIksPr80EC2VCY2Gh2MWql8Kqi817pPwQ9b2DumJY8Srf2vtz6IsbAobhSu37eZKV8ZfnHomMDtPl8Mw3NoOfLiSY4wO+loqA9FjKepknMEaFvPJYEl8QXvrEBf1MXeGYwXwQYH5KKU0r4PE2vGarAdZWuECiBw8jf4LXA1UuiilyauIzNCTe1NC0PfVoNJOuJ6gwBpMbatkNsvdgD3El5AFMQI3+oOlNcmu3SCUT2ZKd5plrdBIKLoDCblvbYnl1OZAAPazrxmZReD1DSlfleEWFVfZBF7zYecoAG8OspF8KtTkEga7SNxoyBmO2WUYSecjMffdFE1PzwWMyMKu5YulwB6/Nz49+O/caLyTHLRkLmpeU5e9C/fu4qPLieGcYW0XyW3wSn99ZQ5wMjAkG9RlnHEvUbhCcXn9nKhlAIjEaVLgaQU5O4DSfXJVNLIPS1UEVofzc=
 language: ruby
-rbenv:
-- 2.4.5
-services:
-- postgresql
-- redis-server
+rvm:
+- 2.4.1
 before_install:
+- gem update --system
 - gem install bundler
 before_script:
-- bundle exec rake db:{drop,create,migrate}
-script:
-- bundle exec rspec
-- bundle exec rake db:seed
-deploy:
-  provider: heroku
-  api_key:
-    secure: BRqF4PXTkPDf9ftpVWpAssqNjv6UZTJccDhqsK2w3qPwRQNr/CKWYaK2/QycEO2kHxI/Lof6JFKzvA4Iz6iC68UEI+csKs4J7CrDz+5oduIfBBLAEvdahmcKRulGovPF855MirW7X1XUymMtVW9Vkd6ZCcXNWrHnm7mUwXPWNKYHGJT9W8WqII9N7R9yL4ImIrvHCsDClrbStrbCR9AkQGvHDzSUM90aoDSIksPr80EC2VCY2Gh2MWql8Kqi817pPwQ9b2DumJY8Srf2vtz6IsbAobhSu37eZKV8ZfnHomMDtPl8Mw3NoOfLiSY4wO+loqA9FjKepknMEaFvPJYEl8QXvrEBf1MXeGYwXwQYH5KKU0r4PE2vGarAdZWuECiBw8jf4LXA1UuiilyauIzNCTe1NC0PfVoNJOuJ6gwBpMbatkNsvdgD3El5AFMQI3+oOlNcmu3SCUT2ZKd5plrdBIKLoDCblvbYnl1OZAAPazrxmZReD1DSlfleEWFVfZBF7zYecoAG8OspF8KtTkEga7SNxoyBmO2WUYSecjMffdFE1PzwWMyMKu5YulwB6/Nz49+O/caLyTHLRkLmpeU5e9C/fu4qPLieGcYW0XyW3wSn99ZQ5wMjAkG9RlnHEvUbhCcXn9nKhlAIjEaVLgaQU5O4DSfXJVNLIPS1UEVofzc=
+- psql -c 'create database travis_ci_test;' -U postgres
+env:
+  global:
+    secure: QtN9wnLNtINUZUFZ4hj3rLZ/KvNCxpXXbd7V5pP+NDeZol1QmXF2dcapM9LeE7QdXPYOQd+yMlqF01hVlk25qMcBOqYsIANXC8U07uJ2LElTScv8sjnpaT30pWz4V1bV9i2t/1QQq5k2ixtRUQXNKD+WuBIo4cCeWXfzHQG9w8k53GRWu5hTPihwPTmWorK5GIOLfbE+EEub4kJ80+kFWj4GR/H+sOnCqiTtPje2GtTR4fRlTaZ+MAiY+1gVO2rihbiUKMA3v/4o91vuZrLuVGPhwg9aWyb1U4m7Tz9sDHeqtMgiOvvcp8cS0dYsfjsKSCIzS+Mq91CFDWuP2m7/KxSpW/eci3UofMDW5Bn5dpk7JaQLFSHk6YcXjkcECXr83qz3TOoMX1aVF2efFak835fRKLgaDX/b81qgnJB8R0ZVERhPV4QmD0Y9NetldPYe91ZR/Ns68oO5JnjyIWwd3YiWCP64sFmZw7htn9dg1wgvoIdbPMTHLJheyhKNcBSk9/YTpV5igV+VK6gJNBbdwNUt955jpiOJ+M9idemfEewlc3qX51IvyLJmj4PWGAXa6Os5ut0HXCGL2tfQmNfMsfqueqdu6HWn+KIOpFCmywOulrQsv2CWiBm2a9Uq5Rdf/4RzjdkvET7kKHtDMWMEuJJkiMaBQ5xmokR3eatGBnI=
