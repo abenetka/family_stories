@@ -35,7 +35,7 @@ describe 'Recipes API' do
                       instructions: "Mix together and bake",
                       family_id: family_1.id
                     }
-    post "/api/v1/families/#{family_1.id}/recipes", params: {recipe: recipe_params }
+    post "/api/v1/families/#{family_1.id}/recipes", params: recipe_params
 
     recipe = Recipe.last
 
@@ -50,7 +50,7 @@ describe 'Recipes API' do
                       instructions: "Mix together and bake",
                       family_id: family_1.id
                     }
-    post "/api/v1/families/#{family_1.id}/recipes", params: {recipe: recipe_params }
+    post "/api/v1/families/#{family_1.id}/recipes", params: recipe_params
 
     recipe = Recipe.last
 
