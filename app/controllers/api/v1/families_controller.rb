@@ -8,7 +8,7 @@ class Api::V1::FamiliesController < ApplicationController
   end
 
   def create
-    if family_params
+    if family_params[:name]
       render json: Family.create(family_params)
     else
       render json: "Oops, you forgot some information!", status: :unauthorized
