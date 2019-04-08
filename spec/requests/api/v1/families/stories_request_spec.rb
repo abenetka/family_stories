@@ -32,7 +32,7 @@ describe "Family Story API" do
     family_1 = create(:family)
     story_params = { title: "Face Smash 1972", content: "Herman broke his face on a fence post", author: "Kathy", family_id: family_1.id }
 
-    post "/api/v1/families/#{family_1.id}/stories", params: {story: story_params}
+    post "/api/v1/families/#{family_1.id}/stories", params: story_params
 
     story = Story.last
 
