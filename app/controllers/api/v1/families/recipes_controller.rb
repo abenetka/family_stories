@@ -9,6 +9,12 @@ class Api::V1::Families::RecipesController < ApplicationController
     end
   end
 
+  def show
+    recipe = Recipe.find(params[:id])
+    render json: RecipeSerializer.new(recipe)
+  end
+
+
   def create
     family = Family.find_by(id: params[:id])
     if family && recipe_params[:title] && recipe_params[:instructions] && recipe_params[:ingredients]
