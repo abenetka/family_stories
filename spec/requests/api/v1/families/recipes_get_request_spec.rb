@@ -78,11 +78,21 @@ describe 'Recipes API' do
   it 'can delete a recipe' do
     family_1 = create(:family)
     recipe_1 = create(:recipe, family: family_1)
+    recipe_2 = create(:recipe, family: family_1)
+    recipe_3 = create(:recipe, family: family_1)
+
+    get "/api/v1/families/#{family_1.id}/recipes"
+    recipes = JSON.parse(response.body)["data"]
+    expect(recipes.count).to eq(3)
 
     delete "/api/v1/families/#{family_1.id}/recipes/#{recipe_1.id}"
 
     expect(response).to be_successful
     expect(status).to eq(204)
+
+    get "/api/v1/families/#{family_1.id}/recipes"
+    recipes = JSON.parse(response.body)["data"]
+    expect(recipes.count).to eq(2)
   end
 
 end
