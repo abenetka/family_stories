@@ -1,4 +1,5 @@
 class Api::V1::Families::RecipesController < ApplicationController
+
   def index
     family = Family.find_by(id: params[:id])
     if family && family.recipes !=[]
@@ -9,7 +10,8 @@ class Api::V1::Families::RecipesController < ApplicationController
   end
 
   def create
-    if recipe_params[:title] && recipe_params[:ingredients] && recipe_params[:instructions] && recipe_params[:family_id]
+    family = Family.find_by(id: params[:id])
+    if family && recipe_params[:title] && recipe_params[:instructions] && recipe_params[:ingredients]
       render json: Recipe.create(recipe_params)
     else
       render json: "Oops, you forgot some information!", status: :unauthorized
@@ -19,7 +21,7 @@ class Api::V1::Families::RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :ingredients, :instructions, :family_id)
+    params.permit(:title, :ingredients, :instructions, :family_id)
   end
 
 end
