@@ -75,4 +75,14 @@ describe 'Recipes API' do
     expect(recipes["relationships"]["family"]["data"]["id"]).to eq(family_1.id.to_s)
   end
 
+  it 'can delete a recipe' do
+    family_1 = create(:family)
+    recipe_1 = create(:recipe, family: family_1)
+
+    delete "/api/v1/families/#{family_1.id}/recipes/#{recipe_1.id}"
+
+    expect(response).to be_successful
+    expect(status).to eq(204)
+  end
+
 end
