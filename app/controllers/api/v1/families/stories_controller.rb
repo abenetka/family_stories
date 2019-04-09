@@ -11,7 +11,7 @@ class Api::V1::Families::StoriesController < ApplicationController
   def show
     story = Story.find(params[:id])
     if story
-      render json: story
+      render json: StorySerializer.new(story)
     end
   end
 
