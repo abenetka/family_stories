@@ -1,3 +1,5 @@
 class Recipe < ApplicationRecord
   belongs_to :family
-end 
+
+  validates_presence_of :title, :ingredients, :instructions
+end
