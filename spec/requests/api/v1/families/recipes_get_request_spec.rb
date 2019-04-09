@@ -59,4 +59,20 @@ describe 'Recipes API' do
     expect(response.body).to eq("Oops, you forgot some information!")
   end
 
+  it "returns one recipe" do
+    family_1 = create(:family)
+    recipe_1 = create(:recipe, family: family_1)
+    recipe_2 = create(:recipe, family: family_1)
+
+    get "/api/v1/families/#{family_1.id}/recipes/#{recipe_1.id}"
+
+    expect(response).to be_successful
+
+    recipes = JSON.parse(response.body)["data"]
+    expect(recipes["id"]).to eq(recipe_1.id.to_s)
+    expect(recipes["id"]).to_not eq(recipe_2.id.to_s)
+    expect(recipes["attributes"]["title"]).to eq(recipe_1.title.to_s)
+    expect(recipes["relationships"]["family"]["data"]["id"]).to eq(family_1.id.to_s)
+  end
+
 end
