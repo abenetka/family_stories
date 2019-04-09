@@ -9,6 +9,16 @@ class Api::V1::Families::RecipesController < ApplicationController
     end
   end
 
+  def show
+    recipe = Recipe.find(params[:id])
+    if recipe != nil
+      render json: RecipeSerializer.new(recipe)
+    else
+      render json: "Oops, looks like this recipe doesn't exist", status: :unauthorized
+    end
+  end
+
+
   def create
     family = Family.find_by(id: params[:id])
     if family && recipe_params[:title] && recipe_params[:instructions] && recipe_params[:ingredients]
