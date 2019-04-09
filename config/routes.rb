@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         get "/:id/recipes", to: 'recipes#index'
         get "/:id/recipes/:id", to: 'recipes#show'
         post "/:id/recipes", to: 'recipes#create'
+        delete "/:id/recipes/:id", to: 'recipes#destroy'
         get "/:id/photos", to: 'photos#index'
         get "/:id/family_members", to: 'family_members#index'
       end
