@@ -20,28 +20,14 @@ describe 'Families API' do
       expect(response).to be_successful
       expect(family["id"]).to eq(id)
   end
-
-  it "can create a family" do
-    family_params = { name: "Fay" }
-
-    post "/api/v1/families", params: family_params
-
-    family = Family.last
+  it "returns one family by id" do
+    family_1 = create(:family)
+    family_2 = create(:family)
+    get "/api/v1/families/#{family_1.id}"
 
     expect(response).to be_successful
-    expect(family.name).to eq(family_params[:name])
+    family = JSON.parse(response.body)
+    expect(family["name"]).to eq(family_1.name)
+    expect(family["name"]).to_not eq(family_2.name)
   end
-
-  it "wont create a family with missing information" do
-    family_params = { not_a_name: ""}
-
-    post "/api/v1/families", params: family_params 
-
-    family = Family.last
-
-    expect(response).to_not be_successful
-    expect(response.status).to eq(401)
-    expect(response.body).to eq("Oops, you forgot some information!")
-  end
-
 end
