@@ -38,12 +38,12 @@ describe "Stories API" do
     expect(response).to be_successful
     story = JSON.parse(response.body)
 
-    expect(story["id"]).to eq(story_1.id)
-    expect(story["title"]).to eq(story_1.title)
-    expect(story["content"]).to eq(story_1.content)
-    expect(story["author"]).to eq(story_1.author)
-    expect(story["family_id"]).to eq(story_1.family_id)
-    expect(story["id"]).to_not eq(story_2.id)
-    expect(story["title"]).to_not eq(story_2.title)
+    expect(story["data"]["id"]).to eq(story_1.id.to_s)
+    expect(story["data"]["attributes"]["title"]).to eq(story_1.title)
+    expect(story["data"]["attributes"]["content"]).to eq(story_1.content)
+    expect(story["data"]["attributes"]["author"]).to eq(story_1.author)
+    expect(story["data"]["relationships"]["family"]["data"]["id"]).to eq(story_1.family_id.to_s)
+    expect(story["data"]["id"]).to_not eq(story_2.id.to_s)
+    expect(story["data"]["attributes"]["title"]).to_not eq(story_2.title)
   end
 end
