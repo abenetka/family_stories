@@ -8,6 +8,13 @@ class Api::V1::Families::StoriesController < ApplicationController
     end
   end
 
+  def show
+    story = Story.find(params[:id])
+    if story
+      render json: StorySerializer.new(story)
+    end
+  end
+
   def create
     family = Family.find_by(id: params[:id])
     if family && story_params[:title] && story_params[:content] && story_params[:author]
