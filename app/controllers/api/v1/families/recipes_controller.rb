@@ -11,11 +11,7 @@ class Api::V1::Families::RecipesController < ApplicationController
 
   def show
     recipe = Recipe.find(params[:id])
-    if recipe != nil
-      render json: RecipeSerializer.new(recipe)
-    else
-      render json: "Oops, looks like this recipe doesn't exist", status: :unauthorized
-    end
+    render json: RecipeSerializer.new(recipe)
   end
 
 
