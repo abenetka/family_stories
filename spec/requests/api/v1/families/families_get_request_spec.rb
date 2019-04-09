@@ -24,7 +24,7 @@ describe 'Families API' do
   it "can create a family" do
     family_params = { name: "Fay" }
 
-    post "/api/v1/families", params: {family: family_params }
+    post "/api/v1/families", params: family_params
 
     family = Family.last
 
@@ -34,7 +34,7 @@ describe 'Families API' do
 
   it "wont create a family with missing information" do
     family_params = { not_a_name: ""}
-    
+
     post "/api/v1/families", params: {family: family_params }
 
     family = Family.last
