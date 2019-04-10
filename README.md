@@ -1,6 +1,8 @@
 
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/dylhof/family-stories.svg?columns=all)](https://waffle.io/dylhof/family-stories)
 
+[![Build Status](https://travis-ci.org/abenetka/family_stories.svg?branch=master)](https://travis-ci.org/abenetka/family_stories)
+
 # README
 
 Family Stories is our cross-pollination group project for Module 4 of 4 at the Turing School of Software & Design.
