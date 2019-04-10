@@ -25,6 +25,8 @@ $ rails db:migrate
 $ rails db:seed
 ```
 
+In order to see that the backend data is working appropriately, take the rails server for a spin!  Just type `rails s` in your terminal, and you should be able to find our backend APIs at http://localhost:3000/api/v1/families
+
 ## Testing
 We ran our tests using `rspec` and followed our coverage percentage with SimpleCov.
 
