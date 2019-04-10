@@ -5,7 +5,7 @@ class Api::V1::Families::RecipesController < ApplicationController
     if family && family.recipes !=[]
       render json: RecipeSerializer.new(family.recipes)
     else
-      render json: "You have no family recipes"
+      render json: "You have no family recipes", status: :partial_content
     end
   end
 
