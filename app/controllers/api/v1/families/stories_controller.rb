@@ -4,7 +4,7 @@ class Api::V1::Families::StoriesController < ApplicationController
     if family && family.stories != []
       render json: StorySerializer.new(family.stories)
     else
-      render json: "No stories for this family"
+      render json: "No stories for this family", status: :partial_content
     end
   end
 
